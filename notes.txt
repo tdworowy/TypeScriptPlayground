@@ -1,0 +1,3 @@
+run-js name.js -- in browser
+node name.js -- in console
+grunt -- watch .ts and compile
