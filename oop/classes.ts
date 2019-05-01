@@ -49,3 +49,11 @@ class ComplexType {
         callback(this.id)
     }
 }
+//######
+
+abstract class AbstractClas {
+        someMetohd(message: string) : string {
+            return message+ "SMT"
+        }
+    }
+        
