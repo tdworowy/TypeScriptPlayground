@@ -43,6 +43,13 @@ class FootballPrinter<T extends IFootballClub> implements IFootballClubPrinter<T
         console.log(`Country: ${Country[arg.getHomeCountry()]}`)
     }
 }
+//without generics, simpler version
+class FootballPrinterSimple {
+    static print(arg: IFootballClub){
+        console.log(`Name: ${arg.getName()}`)
+        console.log(`Country: ${Country[arg.getHomeCountry()]}`)
+    }
+}
 
 let liverpool:FootballClub = new Liverpool()
 let borussiaDortmund:FootballClub = new BorussiaDortmund()
@@ -52,3 +59,7 @@ let printer: FootballPrinter <FootballClub> = new FootballPrinter()
 printer.print(liverpool)
 printer.print(borussiaDortmund)
 printer.print(rowRybnik)
+
+FootballPrinterSimple.print(liverpool)
+FootballPrinterSimple.print(borussiaDortmund)
+FootballPrinterSimple.print(rowRybnik)
