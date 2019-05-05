@@ -1,3 +1,6 @@
 run-js name.js -- in browser
 node name.js -- in console
 grunt -- watch .ts and compile
+
+typings install dt~mocha --global --save
+typings install npm~chai --save
