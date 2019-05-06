@@ -18,3 +18,25 @@ async function callAwaitDeley() {
     console.log(`after awaitDelay`)
 }
 callAwaitDeley()
+
+function deleayPromiseWithParam() : Promise<string> {
+    return new Promise<string>(
+        (
+            resolve: (str: string) => void,
+            reject: (str: string) => void
+        ) => {
+            function afterWait() {
+                resolve("String from promisse.")
+            }
+            setTimeout(afterWait, 2000)
+        }
+    )
+}
+
+async function callDeleayPromiseWithParam() {
+    console.log(`call deleayPromiseWithParam`)
+    let message:string = await deleayPromiseWithParam()
+    console.log(`after deleayPromiseWithParam`)
+    console.log(`message from promise: ${message}`)
+}
+callDeleayPromiseWithParam()
