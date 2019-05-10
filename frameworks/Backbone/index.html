@@ -1,0 +1,19 @@
+<html>
+    <body>
+        <script type="text/template" id="itemViewTemplate">
+                <button class="btn btn-primary"><%= DisplayNem %></button>
+        </script>
+        <script type="text/template" id="itemCollectionViewTemplate">
+                <h1> <%= DisplayNem %></h1>
+                <ul id="ulRegions"> </ul> 
+        </script>
+        <script src="controller.js">
+            window.onload = function() {
+                var app = new ScreenViewApp()
+                app.start()
+            }
+        </script>
+        <div id="pageLayoutRegion"></div>
+        
+    </body>
+</html>
