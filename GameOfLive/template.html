@@ -1,29 +1,30 @@
 <!DOCTYPE html>
 <html>
-<head>
-<style>
-.grid-container {
-  display: inline-grid;
-  {% COLUMNS %};
-  background-color: #2196F3;
-  padding: 10px;
+  <head>
+    <style>
+    .grid-container {
+      display: inline-grid;
+      {% COLUMNS %};
+      background-color: #2196F3;
+      padding: 10px;
+    }
+
+    .grid-item {
+      background-color: rgba(23, 54, 231, 0.8);
+      border: 1px solid rgba(0, 0, 0, 0.8);
+      padding: 6px;
+      font-size: 7px;
+      text-align: center;
 }
+    </style>
+  </head>
+  <body>
 
-.grid-item {
-  background-color: rgba(23, 54, 231, 0.8);
-  border: 1px solid rgba(0, 0, 0, 0.8);
-  padding: 20px;
-  font-size: 30px;
-  text-align: center;
-}
-</style>
-</head>
-<body>
-
-<div class="grid-container">
-  {% ITEM %};
-</div>
-
-
-</body>
+    <div id ="grid-container" class="grid-container">
+      {% ITEM %};
+    </div>
+    <button type="button" class="next_button" style="float: right;" onclick="game.checkRules()"> NEXT!</button>
+    <button type="button" class="play_button" style="float: right;" onclick="game.play()"> PLAY!</button>  
+    <script src="game_of_live.js"></script>
+  </body>
 </html>
