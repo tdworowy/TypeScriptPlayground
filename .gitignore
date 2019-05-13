@@ -2,3 +2,4 @@ node_modules
 *.js
 !Gruntfile.js
 !error_helper.js
+!game_of_live.js
