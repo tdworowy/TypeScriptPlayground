@@ -12,7 +12,6 @@ class GameOfLive {
         return [cellID - 1,
             cellID + 1,
             cellID + this.rowsCount,
-            cellID + this.rowsCount,
             cellID - this.rowsCount,
             cellID - this.rowsCount - 1,
             cellID - this.rowsCount + 1,
@@ -25,8 +24,8 @@ class GameOfLive {
         }
         catch (TypeError) {
             console.log(`NULL at: ${cellId}`);
+            return false;
         }
-        return false;
     }
     revive(cellId) {
         this.frontEnd.revive(cellId);
@@ -39,6 +38,7 @@ class GameOfLive {
         for (var index of this.getNigbursIndexes(cellID)) {
             if (index >= 0 && index < this.itemsCount) {
                 if (this.isAlive(index)) {
+                    console.log(`${index} IS ALIVE`);
                     LiveNigbursCount += 1;
                 }
             }
@@ -106,7 +106,7 @@ class WebFrontEnd {
     }
     kill(cellId) {
         this.elements.item(cellId).setAttribute('alive', 'false');
-        this.elements.item(cellId).setAttribute('style', 'background-color: blue;');
+        this.elements.item(cellId).setAttribute('style', 'background-color: black;');
     }
 }
 var first = true;
@@ -116,7 +116,7 @@ window.onload = () => {
     if (first) {
         frontEnd = new WebFrontEnd();
         game = new GameOfLive(frontEnd, 50);
-        game.startGame(200);
+        game.startGame(300);
         first = false;
     }
 };

@@ -28,7 +28,6 @@ class GameOfLive implements IGameOfLive{
         return [ cellID - 1,
                  cellID + 1,
                  cellID +  this.rowsCount,
-                 cellID +  this.rowsCount,
                  cellID -  this.rowsCount,
                  cellID -  this.rowsCount - 1,
                  cellID -  this.rowsCount + 1,
@@ -41,8 +40,9 @@ class GameOfLive implements IGameOfLive{
         }
         catch(TypeError) {
             console.log(`NULL at: ${cellId}`)
+            return false
         }
-        return false
+        
     }
     private revive(cellId:number) {
         this.frontEnd.revive(cellId)
@@ -57,6 +57,7 @@ class GameOfLive implements IGameOfLive{
         for(var index of this.getNigbursIndexes(cellID)) {
             if(index >=0 && index < this.itemsCount) {  
                     if(this.isAlive(index)) {
+                        console.log(`${index} IS ALIVE`)
                         LiveNigbursCount += 1
                     }
             }
@@ -86,7 +87,7 @@ class GameOfLive implements IGameOfLive{
                 if(LiveNigbursCount == 3) {
                    this.revive(i)
                    console.log(`revive: ${i}`)    
-                }
+              }
             }
         }
     }
@@ -125,7 +126,7 @@ class WebFrontEnd implements IFrontend {
     }
     kill(cellId:number) {
         this.elements.item(cellId).setAttribute('alive','false') 
-        this.elements.item(cellId).setAttribute('style','background-color: blue;') 
+        this.elements.item(cellId).setAttribute('style','background-color: black;') 
     }
     
 }
@@ -136,7 +137,7 @@ window.onload = () => {
     if(first) {
         frontEnd = new WebFrontEnd()
         game = new GameOfLive(frontEnd, 50);
-        game.startGame(200)
+        game.startGame(300)
         first = false
     }
 };
