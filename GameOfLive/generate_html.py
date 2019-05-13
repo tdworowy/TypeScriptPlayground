@@ -20,4 +20,4 @@ def generate_gird(template, rows_count):
 
 if __name__ == "__main__":
     with open('index.html', 'w') as index:
-        index.write(generate_gird("template.html", 50))
+        index.write(generate_gird("template.html", 70))

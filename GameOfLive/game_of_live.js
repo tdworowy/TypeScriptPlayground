@@ -30,8 +30,8 @@ class GameOfLive {
     revive(cellId) {
         this.frontEnd.revive(cellId);
     }
-    kill(cellId) {
-        this.frontEnd.kill(cellId);
+    kill(cellId, color = 'black') {
+        this.frontEnd.kill(cellId, color);
     }
     getLiveNigbursCount(cellID) {
         var LiveNigbursCount = 0;
@@ -72,10 +72,15 @@ class GameOfLive {
             }
         }
     }
-    startGame(initialCellsCount) {
+    spawnCells(initialCellsCount) {
         for (let i = 0; i < initialCellsCount; i++) {
             var index = Math.floor(Math.random() * (this.itemsCount));
             this.revive(index);
+        }
+    }
+    killAll() {
+        for (var i = 0; i < this.itemsCount; i++) {
+            this.kill(i, 'blue');
         }
     }
     async play() {
@@ -104,19 +109,21 @@ class WebFrontEnd {
         this.elements.item(cellId).setAttribute('alive', 'true');
         this.elements.item(cellId).setAttribute('style', 'background-color: red;');
     }
-    kill(cellId) {
+    kill(cellId, color = 'black') {
         this.elements.item(cellId).setAttribute('alive', 'false');
-        this.elements.item(cellId).setAttribute('style', 'background-color: black;');
+        this.elements.item(cellId).setAttribute('style', `background-color: ${color};`);
     }
 }
 var first = true;
 var frontEnd;
 var game;
+function initialize() {
+    var cellsCount = document.getElementById("cells");
+    game.killAll();
+    game.spawnCells(Number(cellsCount.value));
+}
 window.onload = () => {
-    if (first) {
-        frontEnd = new WebFrontEnd();
-        game = new GameOfLive(frontEnd, 50);
-        game.startGame(300);
-        first = false;
-    }
+    frontEnd = new WebFrontEnd();
+    game = new GameOfLive(frontEnd, 70);
+    game.spawnCells(50);
 };

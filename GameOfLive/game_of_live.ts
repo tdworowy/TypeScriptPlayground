@@ -1,14 +1,15 @@
 
 interface IFrontend {
     isAlive(cellId:number): boolean
-    kill(cellId:number): void
+    kill(cellId:number,color?:string): void
     revive(cellId:number): void
 }
   
 interface IGameOfLive {
-    startGame(initialCellsCount:number): void
+    spawnCells(initialCellsCount:number): void
     checkRules():void
     play():void
+    killAll(): void
 }
 function delay(ms: number) {
     return new Promise( resolve => setTimeout(resolve, ms) );
@@ -47,8 +48,8 @@ class GameOfLive implements IGameOfLive{
     private revive(cellId:number) {
         this.frontEnd.revive(cellId)
     }
-    private kill(cellId:number) {
-        this.frontEnd.kill(cellId)
+    private kill(cellId:number, color:string='black') {
+        this.frontEnd.kill(cellId, color)
     }
     
     private getLiveNigbursCount(cellID: number) : number {
@@ -91,10 +92,15 @@ class GameOfLive implements IGameOfLive{
             }
         }
     }
-    startGame(initialCellsCount:number): void {
+    spawnCells(initialCellsCount:number): void {
         for(let i=0;i< initialCellsCount;i++) {
           var index: number = Math.floor(Math.random() * (this.itemsCount));
           this.revive(index)
+        }
+    }
+    killAll() {
+        for(var i:number=0;i< this.itemsCount;i++) {
+            this.kill(i,'blue')
         }
     }
     async play() {
@@ -124,20 +130,23 @@ class WebFrontEnd implements IFrontend {
         this.elements.item(cellId).setAttribute('alive','true') 
         this.elements.item(cellId).setAttribute('style','background-color: red;') 
     }
-    kill(cellId:number) {
+    kill(cellId:number, color:string='black') {
         this.elements.item(cellId).setAttribute('alive','false') 
-        this.elements.item(cellId).setAttribute('style','background-color: black;') 
+        this.elements.item(cellId).setAttribute('style',`background-color: ${color};`) 
     }
     
 }
 var first = true
 var frontEnd: IFrontend
 var game: IGameOfLive
+
+function initialize() {
+    var cellsCount: HTMLInputElement = <HTMLInputElement>document.getElementById("cells");
+    game.killAll()
+    game.spawnCells(Number(cellsCount.value))
+} 
 window.onload = () => {
-    if(first) {
-        frontEnd = new WebFrontEnd()
-        game = new GameOfLive(frontEnd, 50);
-        game.startGame(300)
-        first = false
-    }
+     frontEnd = new WebFrontEnd()
+     game = new GameOfLive(frontEnd, 70);
+     game.spawnCells(50)
 };
