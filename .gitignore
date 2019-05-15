@@ -1,6 +1,8 @@
 node_modules
 dist
+.vscode
 *.js
 !Gruntfile.js
 !error_helper.js
 !game_of_live.js
+!karma.conf.js
