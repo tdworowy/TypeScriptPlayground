@@ -6,3 +6,4 @@ dist
 !error_helper.js
 !game_of_live.js
 !karma.conf.js
+!webpack.config.js
