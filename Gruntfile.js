@@ -4,11 +4,12 @@ module.exports = function(grunt) {
     grunt.initConfig( { 
     pkg: grunt.file.readJSON('package.json'),
     watch: {    
-        files: ['**/*.ts', '!frameworks/**'],
+        files: ['**/*.ts', '!frameworks/**', "!node_modules/**"],
         tasks: ['exec:run_tsc']
     },
     exec: {
-        run_tsc: {cmd:'tsc'}
+        run_tsc: {
+            cmd:'tsc'}
         }
     });
     grunt.registerTask('default', ['watch']);
