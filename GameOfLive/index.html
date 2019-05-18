@@ -20,7 +20,12 @@
     </style>
   </head>
   <body>
-
+    <button type="button" class="next_button" style="float: right;" onclick="game.checkRules()"> NEXT!</button>
+    <button type="button" class="play_button" style="float: right;" onclick="game.play()"> PLAY!</button>
+    <button type="button" class="init_button" style="float: right;" onclick="initialize()"> INIT!</button>
+    <form style="float: right;">
+     Cells count:<input type="text" id="cells" name="cells"><br>
+    </form>
     <div id ="grid-container" class="grid-container">
       <div id = 0 alive=false class="grid-item">0</div>
 <div id = 1 alive=false class="grid-item">1</div>
@@ -4924,12 +4929,7 @@
 <div id = 4899 alive=false class="grid-item">4899</div>
 
     </div>
-    <form style="float: right;">
-      <input type="text" id="cells" name="cells"><br>
-    </form>
-    <button type="button" class="next_button" style="float: right;" onclick="game.checkRules()"> NEXT!</button>
-    <button type="button" class="play_button" style="float: right;" onclick="game.play()"> PLAY!</button>
-    <button type="button" class="init_button" style="float: right;" onclick="initialize()"> INIT!</button>
+    
     <script src="game_of_live.js"></script>
   </body>
 </html>
