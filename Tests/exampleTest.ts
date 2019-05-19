@@ -1,4 +1,14 @@
 describe("exampleTest.ts", () => {
+    beforeEach ( 
+        () => {
+            console.log("Before each")
+        }
+    )
+    afterEach( 
+        () => {
+            console.log("After each")
+        }
+    )
     it("Variable should be defined", () => {
         let undefinedValue = 'TEST'
         expect(undefinedValue).toBeDefined()
