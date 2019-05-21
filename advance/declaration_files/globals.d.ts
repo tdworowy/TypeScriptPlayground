@@ -2,4 +2,4 @@ interface IContactData {
     DisplayText: string
     Email: String 
 }
-declare var CONTACT_EMAIL_ARRAY: IContactData [];
+declare var CONTACT_DATA: IContactData [];
