@@ -8,3 +8,4 @@ dist
 !karma.conf.js
 !webpack.config.js
 !karma.conf.js
+!protractor.conf.js

@@ -20,7 +20,8 @@
     "jquery": "^3.4.1",
     "karma": "^4.1.0",
     "karma-chrome-launcher": "^2.2.0",
-    "karma-jasmine": "^2.0.1"
+    "karma-jasmine": "^2.0.1",
+    "protractor": "^5.4.2"
   },
   "devDependencies": {},
   "scripts": {
