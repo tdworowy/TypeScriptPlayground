@@ -1,0 +1,14 @@
+{
+  "spec_dir": "spec",
+  "spec_files": [
+    "dom_test.js",
+    "async_tests.js",
+    "exampleTest_spies.js",
+    "exampleTest.js"
+  ],
+  "helpers": [
+    "helpers/**/*.js"
+  ],
+  "stopSpecOnExpectationFailure": false,
+  "random": true
+}
