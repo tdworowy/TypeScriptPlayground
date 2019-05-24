@@ -8,6 +8,7 @@ class ItemCollectionView extends Backbone.View<ItemModel> {
         this.template =  _.template (
             $('#itemCollectionViewTemplate').html()
         )
+        this.listenTo(EventBus.Bus, "item_clicked", this.handleEvent)
     }
     render() {
         this.$el.html(this.template (
@@ -22,5 +23,9 @@ class ItemCollectionView extends Backbone.View<ItemModel> {
             }
         )
       return this
+    }
+    handleEvent(e:any) {
+        this.model.SelectedItem = new ItemModel(e)
+        this.render()
     }
 }

@@ -1,3 +1,7 @@
+class EventBus {
+    static Bus = __extends({}, Backbone.Events)
+}
+
 class ItemView extends Backbone.View<ItemModel> {
     template: (json:any, options?:Backbone.ViewOptions<ItemModel>) => string
     constructor (
@@ -19,6 +23,6 @@ class ItemView extends Backbone.View<ItemModel> {
        return this 
     }
     onCLicked() {
-        alert(`Elemend clicked: {id: ${this.model.get('Id')}, DisplayName: ${this.model.get('DisplayName')}}`)
+       EventBus.Bus.trigger("item_clicked", this.model)
     }
 }
