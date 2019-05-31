@@ -1,3 +1,6 @@
+import { browser } from 'protractor'
+import { element } from 'protractor'
+import { by } from 'protractor'
 describe('End to end test', () => {
 
     beforeEach( () => {
