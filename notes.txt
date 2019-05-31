@@ -6,3 +6,9 @@ npm install name --save
 npm install @types/name --save
 
 tsc -p <folder witch config>
+
+aurelia:
+au build
+au test
+au run
+au e2e
