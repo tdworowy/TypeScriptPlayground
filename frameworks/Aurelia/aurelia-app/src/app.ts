@@ -1,15 +1,19 @@
+import {ClickableItem} from "./ClickableItem"
 export class App {
   public message: string = 'Choose option:';
-  items: ClikableItem [] =  [
-    {id:1, displayName: "FirstElement"},
-    {id:2, displayName: "SecondElement"},
-    {id:3, displayName: "ThirdElement"},
+  public currentElement: ClickableItem
+  items: ClickableItem [] =  [
+    {idValue:1, displayName: "FirstElement"},
+    {idValue:2, displayName: "SecondElement"},
+    {idValue:3, displayName: "ThirdElement"},
   ]
-  onItemClicked(event: ClikableItem) {
-    alert(`App.onItemClicked, event.id: ${event.id} - ${event.displayName}`)
+  constructor() {
+    this.currentElement = {idValue: 0, displayName: 'none'}
   }
-}
-export class ClikableItem {
-  displayName: string
-  id: number
+  onItemClicked(event: ClickableItem) {
+    alert(`App.onItemClicked, event.idValue: ${event.idValue} - ${event.displayName}`)
+  }
+  onItemClick(event: ClickableItem) {
+    this.currentElement = event
+  }
 }

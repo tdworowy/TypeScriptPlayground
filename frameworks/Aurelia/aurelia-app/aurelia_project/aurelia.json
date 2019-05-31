@@ -26,5 +26,15 @@
     "port": 9000,
     "output": "dist"
   },
-  "packageManager": "npm"
+  "packageManager": "npm",
+  "e2eTestRunner": {
+    "id": "protractor",
+    "displayName": "Protractor",
+    "source": "test/e2e/src/**/*.ts",
+    "dist": "test/e2e/dist/",
+    "typingsSource": [
+      "typings/**/*.d.ts",
+      "custom_typings/**/*.d.ts"
+    ]
+  }
 }

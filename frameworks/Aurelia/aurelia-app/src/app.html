@@ -1,4 +1,5 @@
 <template>
+  <require from="./ClickableItem"></require>
   <h1>${message}</h1>
   <ul>
     <li repeat.for="item of items" click.delegate="onItemClicked(item)">
@@ -7,4 +8,8 @@
       </button>
     </li>
   </ul>
+  <Clickable-item
+    id-value="${currentElement.idValue}"
+    display-name="${currentElement.displayName}">
+  </Clickable-item>
 </template>
