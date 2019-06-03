@@ -12,3 +12,6 @@ au build
 au test
 au run
 au e2e
+
+ng test
+ng serve

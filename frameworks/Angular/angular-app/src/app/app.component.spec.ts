@@ -1,35 +1,58 @@
+import { AppComponent } from '../app/app.component';
 import { TestBed, async } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { AppComponent } from './app.component';
 
-describe('AppComponent', () => {
-  beforeEach(async(() => {
+describe("tests/app.component.tests.ts ", () => {
+
+    let appComponent:AppComponent;
+    beforeAll( () => {
+        appComponent = new AppComponent();
+    });
+
+    it("should create AppComponent instance", () => {
+        expect(appComponent).toBeDefined();
+    });
+    it('should set title', () => {
+        expect(appComponent.title)
+            .toContain('angular-app');
+    });
+    it('should set selectedItem.id', () => {
+        expect(appComponent.selectedItem.id).toBe(0);
+    });
+    it('should set selectedItem.displayName', () => {
+        expect(appComponent.selectedItem.displayName)
+            .toBe('none');
+    });
+});
+
+describe('AppComponent rendering tests', () => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
       declarations: [
         AppComponent
       ],
-    }).compileComponents();
-  }));
-
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
+    });
+    TestBed.compileComponents();
   });
 
-  it(`should have as title 'angular-app'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('angular-app');
-  });
+    it('should display inside DOM 0 - none', async(() => {
+        const fixture = TestBed.createComponent(AppComponent);
+        fixture.detectChanges();
+        const element = fixture.debugElement.nativeElement;
+        let selectedDiv = element.querySelector('#selectedItemText');
+        expect(selectedDiv.innerHTML).toContain('0 - none');
+    }));
 
-  it('should render title in a h1 tag', () => {
+it('should update DOM after click', async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to angular-app!');
-  });
+    const element = fixture.debugElement.nativeElement;
+    let button_1 = element.querySelector('#select_button_0');
+    button_1.click();
+
+    fixture.detectChanges(); 
+
+    let selectedDiv = element.querySelector('#selectedItemText');
+    expect(selectedDiv.innerHTML).toContain('FirstElement');
+}));
+
 });

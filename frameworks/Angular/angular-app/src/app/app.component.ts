@@ -20,7 +20,13 @@ let ClikableItemArray: ClikableItem[] =
 export class AppComponent {
   title = 'angular-app';
   items = ClikableItemArray
-  onSelect(SelectedItem: ClikableItem) {
-    alert(`App.onItemClicked, event.id: ${SelectedItem.id} - ${SelectedItem.displayName}`)
+  selectedItem: ClikableItem
+  constructor() {
+    this.selectedItem = {id: 0, displayName: 'none'}
+  }
+  onSelect(selectedItem: ClikableItem) {
+    this.selectedItem = selectedItem
+    console.log(`onSelect: ${this.selectedItem.id}`) 
+    //alert(`App.onItemClicked, event.id: ${SelectedItem.id} - ${SelectedItem.displayName}`)
   }
 }
