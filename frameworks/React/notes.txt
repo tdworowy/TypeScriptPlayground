@@ -1,1 +1,1 @@
-webpacl <- build application
+webpack-cli .\webpack.config.js

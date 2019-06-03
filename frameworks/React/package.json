@@ -9,9 +9,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/jasmine": "^3.3.13",
+    "@types/protractor": "^4.0.0",
     "@types/react": "^16.8.17",
+    "@types/react-addons-test-utils": "^0.14.24",
     "@types/react-dom": "^16.8.4",
+    "jasmine": "^3.4.0",
+    "protractor": "^5.4.2",
     "react": "^16.8.6",
+    "react-addons-test-utils": "^15.6.2",
     "react-dom": "^16.8.6"
   },
   "devDependencies": {

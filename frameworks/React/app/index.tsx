@@ -1,9 +1,9 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 
-import {ArrayView, ClicableItem} from './ReactApp'
+import {ArrayView, ClickableItem} from './ReactApp'
 
-let ClikableItemArray: ClicableItem[] =  [
+let ClikableItemArray: ClickableItem[] =  [
     {id:1, displayName: "FirstElement"},
     {id:2, displayName: "SecondElement"},
     {id:3, displayName: "ThirdElement"},

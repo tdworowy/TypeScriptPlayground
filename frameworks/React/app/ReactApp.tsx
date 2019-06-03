@@ -1,11 +1,11 @@
 import * as React from 'react';
-export class ClicableItem {
+export class ClickableItem {
     displayName: string = ""
     id: number = 0
 }
-export class ClickItemView extends React.Component<ClicableItem,{}> {
+export class ClickItemView extends React.Component<ClickableItem,{}> {
     constructor() {
-        super(new ClicableItem())
+        super(new ClickableItem())
         this.handleClick = this.handleClick.bind(this)
     }
     render() {
@@ -19,19 +19,42 @@ export class ClickItemView extends React.Component<ClicableItem,{}> {
 }
 export interface IArrayViewProps {
     title: string
-    items: ClicableItem[]
+    items: ClickableItem[]
+    selectedItem?: ClickableItem
 }
 export class ArrayView extends React.Component <IArrayViewProps, {}> {
-    render() {
-        let buttonNodes = 
-            this.props.items.map (function(item) {
-                return (
-                    <ClickItemView {...item}/>
-                )
-            })
-        return <div>
-            <h1>{this.props.title}</h1>
-            <ul>{buttonNodes}</ul>
-            </div>
+    selectedItem: ClickableItem
+    constructor(props?:any) {
+        super(props)
+        this.selectedItem = {id:0, displayName: 'none'}
     }
+
+    handleClick(i : number, props: any): any {
+        //console.log(`handleClick : ${props}`);
+        this.selectedItem = props;
+        this.forceUpdate();
+      } 
+      
+    render() {
+
+        return ( <div>
+          <h1>{this.props.title}</h1>
+          <ul>
+            {this.props.items.map( (item,i) =>{
+              return (
+                <li key={i} onClick={this.handleClick.bind(this, i, item)}>
+                  <button id={'select_button_' + item.id} >                 
+                  {item.displayName}</button>
+                </li>
+              );
+            }, this)}
+          </ul>
+      
+          <div id="selectedItem">Selected element: 
+            {this.selectedItem.id} - {this.selectedItem.displayName}
+          </div>
+          </div>
+        );
+      }
+      
 }
