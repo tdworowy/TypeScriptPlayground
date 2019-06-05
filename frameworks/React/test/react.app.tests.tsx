@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import * as TestUtils from "react-addons-test-utils";
+import * as TestUtils from "react-dom/test-utils";
 import {ArrayView, ClickableItem} from '../app/ReactApp';
 
 describe('tests of model ArrayView', () => {
@@ -13,7 +13,7 @@ describe('tests of model ArrayView', () => {
 });
 
 describe('ArrayView tests', () => {
-  let renderer : any;
+  let renderer: any;
 
   let ClickableItemArray : ClickableItem[] = [
     { id: 1, displayName : "FirstElement"},

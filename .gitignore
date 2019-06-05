@@ -10,3 +10,4 @@ dist
 !karma.conf.js
 !protractor.conf.js 
 !aurelia_protractor.js 
+!webpack.config_tests.js
