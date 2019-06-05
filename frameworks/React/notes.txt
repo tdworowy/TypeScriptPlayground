@@ -1,1 +1,3 @@
 webpack-cli .\webpack.config.js
+npm test
+https://www.mourtada.se/unit-testing-with-jspm-karma-mocha-and-react/
