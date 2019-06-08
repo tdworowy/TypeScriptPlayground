@@ -12,3 +12,4 @@ dist
 !protractor.conf.js 
 !aurelia_protractor.js 
 !webpack.config_tests.js
+!full_stack_example
