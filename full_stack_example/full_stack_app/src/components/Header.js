@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 const Header = ({ message }) => {
     const color = Math.random() >0.5 ? 'green' : 'red'
     return (
-        <h2 clasName="Header" style= {{color: color}}>
+        <h2 className="Header" style= {{color: color}}>
                 {message}
         </h2>
     )
