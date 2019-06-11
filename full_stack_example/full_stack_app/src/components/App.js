@@ -1,30 +1,18 @@
 import React from 'react'
-//import axios from 'axios'
 import Header from "./Header"
 import ContestList from "./ContestsList"
 import Contest from "./Contest"
-
+import * as api from "../api"
+import PropTypes from 'prop-types'
 
 const pushState = (obj, url) => window.history.pushState(obj,'',url)
 
 class App extends React.Component {
-    state = {
-        pageHeader: "Naming Contests",
-        contests: this.props.initialContests
+    static propTypes = {
+        initialData: PropTypes.object.isRequired
     }
-    // componentDidMount() {
-    //     console.log("Did Mount.")
-    //     axios.get('/api/contests')
-    //         .then(resp => {
-    //             console.log("In promise.")
-    //             console.log(resp)
-    //             this.setState({
-    //                 contests: resp.data.contests
-    //             })
-    //         })
-    //         .catch(console.error)
-        
-    // }
+    state = this.props.initialData
+    
     componentWillUnmount() {
         console.log("Will Unmount")
     }
@@ -33,14 +21,29 @@ class App extends React.Component {
             {currentContestId: contestId},
             `/contest/${contestId}`
         )
-        this.setState({
-            pageHeader: this.state.contests[contestId].contestName,
-            currentContestId: contestId
+        api.fetchContest(contestId).then(contest => {
+            this.setState({
+                currentContestId: contest.id,
+                contests: {
+                    ...this.state.contests,
+                    [contest.id]: contest
+                }
+            })
         })
+        
+    }
+    currentContest() {
+        return this.state.contests[this.state.currentContestId]
+    }
+    pageHeader() {
+        if( this.state.currentContestId) {
+            return this.currentContest().contestName
+        }
+        return 'Naming Contests'
     }
     currentContent() {   
         if(this.state.currentContestId) {
-            return <Contest {...this.state.contests[this.state.currentContestId]} />
+            return <Contest {...this.currentContest()} />
         }
         else
             return <ContestList 
@@ -52,7 +55,7 @@ class App extends React.Component {
         console.log(this.state.contests)
         return (
             <div className="App">
-               <Header message={this.state.pageHeader}/>
+               <Header message={this.pageHeader()}/>
                {this.currentContent()}
               
             </div>
