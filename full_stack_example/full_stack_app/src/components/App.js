@@ -6,15 +6,22 @@ import * as api from "../api"
 import PropTypes from 'prop-types'
 
 const pushState = (obj, url) => window.history.pushState(obj,'',url)
+const onPopState = handler => { window.onpopstate = handler }
 
 class App extends React.Component {
     static propTypes = {
         initialData: PropTypes.object.isRequired
     }
     state = this.props.initialData
-    
+    componentDidMount() {
+        onPopState((event) => {
+            this.setState({
+               currentContestId: (event.state || {}).currentContestId
+            })
+        })
+    }
     componentWillUnmount() {
-        console.log("Will Unmount")
+        onPopState(null)
     }
     fetchContest = (contestId) => {
         pushState(
@@ -32,6 +39,19 @@ class App extends React.Component {
         })
         
     }
+    fetchContestList = () => {
+        pushState(
+            {currentContestId: null},
+            `/`
+        )
+        api.fetchContestList().then(contests => {
+            this.setState({
+                currentContestId: null,
+                contests
+            })
+        })
+        
+    }
     currentContest() {
         return this.state.contests[this.state.currentContestId]
     }
@@ -43,7 +63,9 @@ class App extends React.Component {
     }
     currentContent() {   
         if(this.state.currentContestId) {
-            return <Contest {...this.currentContest()} />
+            return <Contest 
+                    contestListClick={this.fetchContestList}
+                    {...this.currentContest()} />
         }
         else
             return <ContestList 
