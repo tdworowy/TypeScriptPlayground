@@ -21,6 +21,7 @@ router.get('/contests', (req, res) => {
         })
         .each((err, contest) => {
             assert.equal(null, err)
+            console.log(contest)
             if(!contest) {
                 res.send( { contests } )
                 return            
