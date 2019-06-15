@@ -1,78 +1,67 @@
-import express from 'express'
-import {MongoClient, ObjectId} from 'mongodb'
-import assert from 'assert'
-import config from '../config'
-
-
-let mdb
-MongoClient.connect(config.mongodbUri, (err, client)=>{
-    assert.equal(null, err)
+"use strict";
+exports.__esModule = true;
+var express_1 = require("express");
+var mongodb_1 = require("mongodb");
+var assert_1 = require("assert");
+var config_1 = require("../config");
+var mdb;
+mongodb_1.MongoClient.connect(config_1["default"].mongodbUri, function (err, client) {
+    assert_1.strict.equal(null, err);
     mdb = client.db('test');
-    
-})
-const router = express.Router()
-
-router.get('/contests', (req, res) => {
-    let contests = {}
-    mdb.collection('contests').find({})
+});
+var router = express_1.Router();
+router.get('/contests', function (req, res) {
+    var contests = {};
+    mdb.collection('contests').find()
         .project({
-           categoryName:1,
-           contestName:1, 
-        })
-        .each((err, contest) => {
-            assert.equal(null, err)
-            if(!contest) {
-                res.send( { contests } )
-                return            
-            }
-            contests[contest._id] = contest
-        })
-})
-router.get('/names/:nameIds', (req, res) => {
-    const nameIds = req.params.nameIds.split(",").map(ObjectId)
-    let names = {}
-    mdb.collection('names').find({_id: { $in: nameIds }})
-        .each((err, name) => {
-            assert.equal(null, err)
-            if(!name) {
-                res.send( { names } )
-                return            
-            }
-            names[name._id] = name
-        })
-})
-router.get('/contests/:contestId', (req, res) => {
-    mdb.collection('contests')
-        .findOne({_id: ObjectId(req.params.contestId)})
-        .then(contest => res.send(contest))
-        .catch(error => {
-            console.error(error)
-            res.status(404).send("Bad request")
-        })
-    
-})
-router.post('/names', (req, res) => {
-    const contestId = ObjectId(req.body.contestId);
-    const name = req.body.newName;
-    // validation ...
-    mdb.collection('names').insertOne({ name }).then(result =>
-      mdb.collection('contests').findAndModify(
-        { _id: contestId },
-        [],
-        { $push: { nameIds: result.insertedId } },
-        { new: true }
-      ).then(doc =>
-        res.send({
-          updatedContest: doc.value,
-          newName: { _id: result.insertedId, name }
-        })
-      )
-    )
-    .catch(error => {
-      console.error(error);
-      res.status(404).send('Bad Request');
+        categoryName: 1,
+        contestName: 1
+    })
+        .forEach(function (contest) {
+        console.log("DUPA");
+        console.log(contest);
+        console.log("DUPA");
+        if (!contest) {
+            res.send({ contests: contests });
+            return;
+        }
+        contests[contest._id] = contest;
     });
-  });
-
-
-export default router
+});
+router.get('/names/:nameIds', function (req, res) {
+    var nameIds = req.params.nameIds.split(",").map(mongodb_1.ObjectId);
+    var names = {};
+    mdb.collection('names').find({ _id: { $in: nameIds } })
+        .forEach(function (name) {
+        if (!name) {
+            res.send({ names: names });
+            return;
+        }
+        names[name._id] = name;
+    });
+});
+router.get('/contests/:contestId', function (req, res) {
+    mdb.collection('contests')
+        .findOne({ _id: new mongodb_1.ObjectId(req.params.contestId) })
+        .then(function (contest) { return res.send(contest); })["catch"](function (error) {
+        console.error(error);
+        res.status(404).send("Bad request");
+    });
+});
+router.post('/names', function (req, res) {
+    var contestId = new mongodb_1.ObjectId(req.body.contestId);
+    var name = req.body.newName;
+    // validation ...
+    mdb.collection('names').insertOne({ name: name }).then(function (result) {
+        return mdb.collection('contests').findOneAndUpdate({ _id: contestId }, { $push: { nameIds: result.insertedId } }, { returnOriginal: false }).then(function (doc) {
+            return res.send({
+                updatedContest: doc.value,
+                newName: { _id: result.insertedId, name: name }
+            });
+        });
+    })["catch"](function (error) {
+        console.error(error);
+        res.status(404).send('Bad Request');
+    });
+});
+exports["default"] = router;
