@@ -6,10 +6,6 @@ module.exports = {
   },
   module: {
     rules: [
-      // {
-      //   test: /\.json$/,
-      //   loader: 'json-loader'
-      // },
       {
         test: /\.js$/,
         loader: 'babel-loader'

@@ -1,3 +1,6 @@
 repo: https://github.com/jscomplete/learn-fullstack-javascript
 
 https://www.valentinog.com/blog/babel/ 
+
+babel-node loadTestData.js
+babel-node updateTestData.js
