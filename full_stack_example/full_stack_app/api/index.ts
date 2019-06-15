@@ -3,7 +3,7 @@ import {MongoClient, ObjectId, Db} from 'mongodb'
 import { strict as assert} from 'assert'
 import config from '../config'
 
-
+//TODO it might be wrong
 let mdb: Db
 MongoClient.connect(config.mongodbUri, (err, client)=>{
     assert.equal(null, err)

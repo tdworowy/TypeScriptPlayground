@@ -18,9 +18,7 @@ router.get('/contests', function (req, res) {
         contestName: 1
     })
         .forEach(function (contest) {
-        console.log("DUPA");
         console.log(contest);
-        console.log("DUPA");
         if (!contest) {
             res.send({ contests: contests });
             return;
