@@ -4,6 +4,7 @@ var express_1 = require("express");
 var mongodb_1 = require("mongodb");
 var assert_1 = require("assert");
 var config_1 = require("../config");
+//TODO it might be wrong
 var mdb;
 mongodb_1.MongoClient.connect(config_1["default"].mongodbUri, function (err, client) {
     assert_1.strict.equal(null, err);
@@ -49,7 +50,6 @@ router.get('/contests/:contestId', function (req, res) {
 router.post('/names', function (req, res) {
     var contestId = new mongodb_1.ObjectId(req.body.contestId);
     var name = req.body.newName;
-    // validation ...
     mdb.collection('names').insertOne({ name: name }).then(function (result) {
         return mdb.collection('contests').findOneAndUpdate({ _id: contestId }, { $push: { nameIds: result.insertedId } }, { returnOriginal: false }).then(function (doc) {
             return res.send({
