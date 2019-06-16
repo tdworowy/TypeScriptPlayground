@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon --exec babel-node server.js --ignore public/",
     "dev": "webpack -wd",
-    "tsc" : "tsc -p tsconfig.json",
+    "tsc": "tsc -p tsconfig.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -27,6 +27,7 @@
     "@types/ejs": "^2.6.1",
     "@types/express": "^4.17.0",
     "@types/mongodb": "^3.1.28",
+    "@types/node-sass-middleware": "0.0.31",
     "@types/react": "^16.8.6",
     "@types/react-dom": "^16.8.4",
     "axios": "^0.19.0",

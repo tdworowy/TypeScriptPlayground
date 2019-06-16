@@ -6,3 +6,4 @@ public
 ./src/components/App.jsx
 serverRender.jsx
 index.jsx
+server.js
