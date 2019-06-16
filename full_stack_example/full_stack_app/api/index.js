@@ -1,60 +1,58 @@
-"use strict";
-exports.__esModule = true;
-var express_1 = require("express");
-var mongodb_1 = require("mongodb");
-var assert_1 = require("assert");
-var config_1 = require("../config");
+import { Router } from 'express';
+import { MongoClient, ObjectId } from 'mongodb';
+import { strict as assert } from 'assert';
+import config from '../config';
 //TODO it might be wrong
-var mdb;
-mongodb_1.MongoClient.connect(config_1["default"].mongodbUri, function (err, client) {
-    assert_1.strict.equal(null, err);
+let mdb;
+MongoClient.connect(config.mongodbUri, (err, client) => {
+    assert.equal(null, err);
     mdb = client.db('test');
 });
-var router = express_1.Router();
-router.get('/contests', function (req, res) {
-    var contests = {};
+const router = Router();
+router.get('/contests', (req, res) => {
+    let contests = {};
     mdb.collection('contests').find()
         .project({
         categoryName: 1,
-        contestName: 1
+        contestName: 1,
     })
-        .forEach(function (contest) {
+        .forEach((contest) => {
         contests[contest._id] = contest;
-    })["finally"](function () {
-        res.send({ contests: contests });
+    })
+        .finally(() => {
+        res.send({ contests });
     });
 });
-router.get('/names/:nameIds', function (req, res) {
-    var nameIds = req.params.nameIds.split(",").map(mongodb_1.ObjectId);
-    var names = {};
+router.get('/names/:nameIds', (req, res) => {
+    const nameIds = req.params.nameIds.split(",").map(ObjectId);
+    let names = {};
     mdb.collection('names').find({ _id: { $in: nameIds } })
-        .forEach(function (name) {
+        .forEach((name) => {
         names[name._id] = name;
-    })["finally"](function () {
-        res.send({ names: names });
+    })
+        .finally(() => {
+        res.send({ names });
     });
 });
-router.get('/contests/:contestId', function (req, res) {
+router.get('/contests/:contestId', (req, res) => {
     mdb.collection('contests')
-        .findOne({ _id: new mongodb_1.ObjectId(req.params.contestId) })
-        .then(function (contest) { return res.send(contest); })["catch"](function (error) {
+        .findOne({ _id: new ObjectId(req.params.contestId) })
+        .then(contest => res.send(contest))
+        .catch(error => {
         console.error(error);
         res.status(404).send("Bad request");
     });
 });
-router.post('/names', function (req, res) {
-    var contestId = new mongodb_1.ObjectId(req.body.contestId);
-    var name = req.body.newName;
-    mdb.collection('names').insertOne({ name: name }).then(function (result) {
-        return mdb.collection('contests').findOneAndUpdate({ _id: contestId }, { $push: { nameIds: result.insertedId } }, { returnOriginal: false }).then(function (doc) {
-            return res.send({
-                updatedContest: doc.value,
-                newName: { _id: result.insertedId, name: name }
-            });
-        });
-    })["catch"](function (error) {
+router.post('/names', (req, res) => {
+    const contestId = new ObjectId(req.body.contestId);
+    const name = req.body.newName;
+    mdb.collection('names').insertOne({ name }).then(result => mdb.collection('contests').findOneAndUpdate({ _id: contestId }, { $push: { nameIds: result.insertedId } }, { returnOriginal: false }).then((doc) => res.send({
+        updatedContest: doc.value,
+        newName: { _id: result.insertedId, name }
+    })))
+        .catch(error => {
         console.error(error);
         res.status(404).send('Bad Request');
     });
 });
-exports["default"] = router;
+export default router;

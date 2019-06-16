@@ -1,20 +1,18 @@
-"use strict";
-exports.__esModule = true;
-var axios = require("axios");
+let axios = require("axios");
 //TODO make it work
-exports.fetchContest = function (contestId) {
-    return axios.get("/api/contests/" + contestId)
-        .then(function (resp) { return resp.data; });
+export const fetchContest = (contestId) => {
+    return axios.get(`/api/contests/${contestId}`)
+        .then((resp) => resp.data);
 };
-exports.fetchContestList = function () {
-    return axios.get("/api/contests")
-        .then(function (resp) { return resp.data.contests; });
+export const fetchContestList = () => {
+    return axios.get(`/api/contests`)
+        .then((resp) => resp.data.contests);
 };
-exports.fetchNames = function (namesIds) {
-    return axios.get("/api/names/" + namesIds.join(","))
-        .then(function (resp) { return resp.data.names; });
+export const fetchNames = (namesIds) => {
+    return axios.get(`/api/names/${namesIds.join(",")}`)
+        .then((resp) => resp.data.names);
 };
-exports.addName = function (newName, contestId) {
-    return axios.post("/api/names", { newName: newName, contestId: contestId })
-        .then(function (resp) { return resp.data; });
+export const addName = (newName, contestId) => {
+    return axios.post(`/api/names`, { newName, contestId })
+        .then((resp) => resp.data);
 };
