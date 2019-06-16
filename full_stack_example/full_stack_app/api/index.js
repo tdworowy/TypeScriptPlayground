@@ -19,12 +19,9 @@ router.get('/contests', function (req, res) {
         contestName: 1
     })
         .forEach(function (contest) {
-        console.log(contest);
-        if (!contest) {
-            res.send({ contests: contests });
-            return;
-        }
         contests[contest._id] = contest;
+    })["finally"](function () {
+        res.send({ contests: contests });
     });
 });
 router.get('/names/:nameIds', function (req, res) {
@@ -32,11 +29,9 @@ router.get('/names/:nameIds', function (req, res) {
     var names = {};
     mdb.collection('names').find({ _id: { $in: nameIds } })
         .forEach(function (name) {
-        if (!name) {
-            res.send({ names: names });
-            return;
-        }
         names[name._id] = name;
+    })["finally"](function () {
+        res.send({ names: names });
     });
 });
 router.get('/contests/:contestId', function (req, res) {

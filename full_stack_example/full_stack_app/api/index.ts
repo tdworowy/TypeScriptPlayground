@@ -26,24 +26,21 @@ router.get('/contests', (req:Request, res:Response) => {
            contestName:1, 
         })
         .forEach((contest:any) => {
-            console.log(contest)
-            if(!contest) {
-                res.send( { contests } )
-                return            
-            }
             contests[contest._id] = contest
         })
+        .finally (() => {
+          res.send( {contests} )
+        })  
 })
 router.get('/names/:nameIds', (req:Request, res:Response) => {
     const nameIds = req.params.nameIds.split(",").map(ObjectId)
     let names:INames = {}
     mdb.collection('names').find({_id: { $in: nameIds }})
         .forEach( (name:any) => {
-            if(!name) {
-                res.send( { names } )
-                return            
-            }
             names[name._id] = name
+        })
+        .finally( () => {
+          res.send( { names } )
         })
 })
 router.get('/contests/:contestId', (req:Request, res:Response) => {
