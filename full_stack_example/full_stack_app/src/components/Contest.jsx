@@ -1,20 +1,20 @@
 import React from 'react';
-import PropTypes from 'prop-types'
-import { EventEmitter } from 'events';
-
+import PropTypes from 'prop-types';
 class Contest extends React.Component {
-  componentDidMount() {
-      console.log(this.props.nameIds)
-      this.props.fetchNames(this.props.nameIds)
-  }
-  handleSubmit = (event) => {
-    event.preventDefault()
-    this.props.addName(this.refs.newNameInput.value, this.props._id)
-    this.refs.newNameInput.value = ""
-  } 
-  render() {
-    return (
-      <div className="Contest">
+    constructor() {
+        super(...arguments);
+        this.handleSubmit = (event) => {
+            event.preventDefault();
+            this.props.addName(this.refs.newNameInput.value, this.props._id);
+            this.refs.newNameInput.value = "";
+        };
+    }
+    componentDidMount() {
+        console.log(this.props.nameIds);
+        this.props.fetchNames(this.props.nameIds);
+    }
+    render() {
+        return (<div className="Contest">
         <div className="panel panel-default">
           <div className="panel-heading">
             <h3 className="panel-title">Contest Description</h3>
@@ -32,9 +32,7 @@ class Contest extends React.Component {
           </div>
           <div className="panel-body">
             <ul className="list-group">
-              {this.props.nameIds.map(nameId =>
-                <li key={nameId} className="list-group-item">{this.props.lookupName(nameId).name}</li>
-              )}
+              {this.props.nameIds.map(nameId => <li key={nameId} className="list-group-item">{this.props.lookupName(nameId).name}</li>)}
             </ul>
           </div>
         </div>
@@ -46,10 +44,7 @@ class Contest extends React.Component {
           <div className="panel-body">
             <form onSubmit={this.handleSubmit}>
               <div className="input-group">
-                <input type="text" 
-                  ref="newNameInput"
-                  placeholder="New Name Here..." 
-                  className="form-control" />
+                <input type="text" ref="newNameInput" placeholder="New Name Here..." className="form-control"/>
                 <span className="input-group-btn">
                   <button type="submit" className="btn btn-info">Sumbit</button>
                 </span>
@@ -58,23 +53,19 @@ class Contest extends React.Component {
           </div>
         </div>
 
-        <div className="home-link link"
-             onClick={this.props.contestListClick}>
+        <div className="home-link link" onClick={this.props.contestListClick}>
           Contest List
         </div>
-      </div>
-    );
-  }
+      </div>);
+    }
 }
-
 Contest.propTypes = {
-  _id: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  contestListClick: PropTypes.func.isRequired,
-  fetchNames: PropTypes.func.isRequired,
-  nameIds: PropTypes.array.isRequired,
-  lookupName:PropTypes.func.isRequired,
-  addName: PropTypes.func.isRequired
+    _id: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    contestListClick: PropTypes.func.isRequired,
+    fetchNames: PropTypes.func.isRequired,
+    nameIds: PropTypes.array.isRequired,
+    lookupName: PropTypes.func.isRequired,
+    addName: PropTypes.func.isRequired
 };
-
 export default Contest;

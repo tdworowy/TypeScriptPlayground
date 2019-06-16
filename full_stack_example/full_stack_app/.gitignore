@@ -3,7 +3,7 @@ node_modules
 public
 ./api/index.js
 ./src/api.js
-./src/components/App.jsx
+./src/components/*.jsx
 serverRender.jsx
 index.jsx
 server.js
