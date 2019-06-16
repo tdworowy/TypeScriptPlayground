@@ -1,9 +1,7 @@
 node_modules
 .vscode
 public
-./api/index.js
-./src/api.js
-./src/components/*.jsx
-serverRender.jsx
-index.jsx
+index.js
+api.js
+*.jsx
 server.js
