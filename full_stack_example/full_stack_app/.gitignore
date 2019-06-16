@@ -4,4 +4,4 @@ public
 server.js
 index.js
 api.js
-.jsx
+*.jsx
