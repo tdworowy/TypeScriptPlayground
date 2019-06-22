@@ -3,12 +3,19 @@ import Header from "./Header"
 import ContestList from "./ContestsList"
 import Contest from "./Contest"
 import * as api from "../api"
-import PropTypes from 'prop-types'
+import PropTypes, { string, any } from 'prop-types'
+import { ObjectId } from 'mongodb';
+import ReactDOM from 'react-dom'
 
-const pushState = (obj, url) => window.history.pushState(obj,'',url)
-const onPopState = handler => { window.onpopstate = handler }
+const pushState = (obj: any, url: string) => window.history.pushState(obj,'',url)
+const onPopState = (handler: ((this: WindowEventHandlers, ev: PopStateEvent) => any) | null) => { window.onpopstate = handler }
 
-class App extends React.Component {
+
+interface IAppProps {
+    initialData?: any;
+  }
+
+class App extends React.Component <IAppProps> {
     static propTypes = {
         initialData: PropTypes.object.isRequired
     }
@@ -23,12 +30,12 @@ class App extends React.Component {
     componentWillUnmount() {
         onPopState(null)
     }
-    fetchContest = (contestId) => {
+    fetchContest = (contestId: ObjectId) => {
         pushState(
             {currentContestId: contestId},
             `/contest/${contestId}`
         )
-        api.fetchContest(contestId).then(contest => {
+        api.fetchContest(contestId).then((contest: any) => {
             this.setState({
                 currentContestId: contest._id,
                 contests: {
@@ -38,12 +45,12 @@ class App extends React.Component {
             })
         })
     }
-    fetchNames = (nameIds) => {
+    fetchNames = (nameIds:ObjectId[]) => {
         if(nameIds.length===0) {
             return
         }
         api.fetchNames(nameIds)
-            .then(names => {
+            .then((names:string) => {
                 this.setState({
                     names
                 })
@@ -54,7 +61,7 @@ class App extends React.Component {
             {currentContestId: null},
             `/`
         )
-        api.fetchContestList().then(contests => {
+        api.fetchContestList().then((contests:any) => {
             this.setState({
                 currentContestId: null,
                 contests
@@ -62,9 +69,9 @@ class App extends React.Component {
         })
         
     }
-    addName = (newName, contestId) => {
+    addName = (newName:string, contestId:ObjectId) => {
         api.addName(newName, contestId)
-        .then(resp => 
+        .then((resp:any) => 
              this.setState({
                  contests: {
                      ...this.state.contests,
@@ -87,7 +94,7 @@ class App extends React.Component {
         }
         return 'Naming Contests'
     }
-    lookupName = (nameId) => {
+    lookupName = (nameId:number) => {
         if(!this.state.names || !this.state.names[nameId]) {
             return {
                 name: "..."

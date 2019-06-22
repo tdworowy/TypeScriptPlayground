@@ -7,7 +7,7 @@ class Contest extends React.Component {
       console.log(this.props.nameIds)
       this.props.fetchNames(this.props.nameIds)
   }
-  handleSubmit = (event) => {
+  handleSubmit = (event:any) => {
     event.preventDefault()
     this.props.addName(this.refs.newNameInput.value, this.props._id)
     this.refs.newNameInput.value = ""

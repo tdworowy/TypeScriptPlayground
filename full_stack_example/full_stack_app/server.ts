@@ -1,6 +1,6 @@
 import express from 'express'
 import config from './config'
-import apiRouter from './api'
+import apiRouter from './api/index'
 import sassMiddleware from 'node-sass-middleware'
 import path from 'path'
 import bodyParser from "body-parser"
@@ -19,13 +19,13 @@ import serverRender from './serverRender'
 
 server.get(['/', '/contest/:contestId'], (req, res) => {
     serverRender(req.params.contestId)
-     .then(( {initialMarkup, initialData} ) => {
+     .then(( {initialMarkup, initialData}:any ) => {
         res.render('index', {
             initialMarkup,
             initialData
           });
      })
-     .catch(error => {
+     .catch((error: string) => {
          console.error(error)
          res.status(404).send("Bad request")
      })
@@ -33,6 +33,6 @@ server.get(['/', '/contest/:contestId'], (req, res) => {
 });
 
 
-server.listen(config.port, config.host, ()=> {
+server.listen(Number(config.port), config.host, ()=> {
     console.info("Express listening on port ", config.port)
 })

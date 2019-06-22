@@ -1,8 +1,23 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { ObjectId } from 'mongodb';
 
-class ContestPreview extends React.Component {
-  
+
+
+interface IContestPreviewProps {
+  onClick: Function;
+  _id?: ObjectId;
+  contestName?: string;
+  categoryName?: string
+}
+
+class ContestPreview extends React.Component <IContestPreviewProps> {
+  static propTypes = {
+    _id: PropTypes.string.isRequired, 
+    categoryName: PropTypes.string.isRequired,
+    contestName:  PropTypes.string.isRequired,
+    onClick: PropTypes.func.isRequired
+  }
   handleClick = () => {
     this.props.onClick(this.props._id)
     console.log(this.props.contestName)
@@ -17,11 +32,5 @@ class ContestPreview extends React.Component {
       </div>
     </div>)
   }
-}
-ContestPreview.propTypes = {
-  _id: PropTypes.string.isRequired, 
-  categoryName: PropTypes.string.isRequired,
-  contestName:  PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired
 }
 export default ContestPreview
