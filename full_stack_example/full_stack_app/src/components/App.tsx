@@ -10,7 +10,12 @@ import ReactDOM from 'react-dom'
 const pushState = (obj: any, url: string) => window.history.pushState(obj,'',url)
 const onPopState = (handler: ((this: WindowEventHandlers, ev: PopStateEvent) => any) | null) => { window.onpopstate = handler }
 
-class App extends React.Component {
+
+interface IAppProps {
+    initialData?: any;
+  }
+
+class App extends React.Component <IAppProps> {
     static propTypes = {
         initialData: PropTypes.object.isRequired
     }
@@ -89,7 +94,7 @@ class App extends React.Component {
         }
         return 'Naming Contests'
     }
-    lookupName = (nameId:ObjectId) => {
+    lookupName = (nameId:number) => {
         if(!this.state.names || !this.state.names[nameId]) {
             return {
                 name: "..."
