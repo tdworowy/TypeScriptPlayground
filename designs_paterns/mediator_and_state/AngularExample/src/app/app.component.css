@@ -1,0 +1,57 @@
+.sidenav {
+    height: 100%; 
+    width: 250px; 
+    position: fixed; 
+    z-index: 1; 
+    top: 50px;
+    left: 0;
+    background-color: #111; 
+    overflow-x: hidden; 
+    padding-top: 60px; 
+    transition: 0.3s;   
+  }
+  
+  .sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s
+  }
+  
+  .sidenav a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+  }
+
+  #main {
+    margin-left: 250px;
+    transition: .3s;
+  }
+  
+  #main-body {
+    transition: .3s;
+  }
+  
+  .main-content {
+    padding: 20px;
+  }
+  
+  .row-content-header {
+    padding: 5px;
+    font-size: 20px;
+  }
+  
+    .overlay {
+    height: 100%;
+    width: 100%;
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 54px;
+    overflow-x: hidden; 
+    transition: 0.3s;  
+    transform: translateX(100%);
+    border-left: 1px solid;
+  }
+  
