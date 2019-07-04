@@ -1,1 +1,1 @@
-docker build --no-cache - < Dockerfile_app
+docker build --no-cache -t contestApp:latest - < Dockerfile_app
