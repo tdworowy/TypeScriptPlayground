@@ -2,15 +2,38 @@ import React from 'react';
 import PropTypes from 'prop-types'
 import { EventEmitter } from 'events';
 
-class Contest extends React.Component {
+
+interface IContestProps {
+  _id: string,
+  description: string,
+  contestListClick: any,
+  fetchNames: Function,
+  nameIds: Array<string>,
+  lookupName:Function,
+  addName: Function
+}
+
+class Contest extends React.Component <IContestProps>{
+  
+  static propTypes = {
+    _id: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    contestListClick: PropTypes.func.isRequired,
+    fetchNames: PropTypes.func.isRequired,
+    nameIds: PropTypes.array.isRequired,
+    lookupName:PropTypes.func.isRequired,
+    addName: PropTypes.func.isRequired
+  };
+  
+  
   componentDidMount() {
       console.log(this.props.nameIds)
       this.props.fetchNames(this.props.nameIds)
   }
   handleSubmit = (event:any) => {
     event.preventDefault()
-    this.props.addName(this.refs.newNameInput.value, this.props._id)
-    this.refs.newNameInput.value = ""
+    this.props.addName((this.refs.newNameInput as any).value, this.props._id)
+    (this.refs.newNameInput as any).value = ""
   } 
   render() {
     return (
@@ -67,14 +90,5 @@ class Contest extends React.Component {
   }
 }
 
-Contest.propTypes = {
-  _id: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  contestListClick: PropTypes.func.isRequired,
-  fetchNames: PropTypes.func.isRequired,
-  nameIds: PropTypes.array.isRequired,
-  lookupName:PropTypes.func.isRequired,
-  addName: PropTypes.func.isRequired
-};
 
 export default Contest;
