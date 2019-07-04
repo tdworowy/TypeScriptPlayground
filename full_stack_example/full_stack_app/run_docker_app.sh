@@ -1,1 +1,1 @@
-docker run --name contest contestapp:latest
+docker run --name contest contestapp:latest --net=host
