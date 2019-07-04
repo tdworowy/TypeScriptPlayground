@@ -10,3 +10,8 @@ mongodb
 show collections
 db.use test
 db.contests.find()
+
+
+npm install @babel/cli -g
+npm install @babel/core -g
+npm install @babel/node -g
