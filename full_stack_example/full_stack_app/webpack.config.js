@@ -1,5 +1,6 @@
 module.exports = {
   entry: './src/index.jsx',
+  watch: false,
   output: {
     path: __dirname + '/public',
     filename: 'bundle.js'
