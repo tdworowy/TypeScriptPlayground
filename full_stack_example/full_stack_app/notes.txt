@@ -15,3 +15,9 @@ db.contests.find()
 npm install @babel/cli -g
 npm install @babel/core -g
 npm install @babel/node -g
+
+_________________
+build_docker.sh
+run_mongo_db.sh
+load_data.sh
+run_docker_app.sh
