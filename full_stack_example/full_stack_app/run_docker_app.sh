@@ -1,1 +1,1 @@
-docker run --name contest contestApp:latest
+docker run --name contest contestapp:latest
