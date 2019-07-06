@@ -42,7 +42,7 @@ export class AppComponent  implements IMediatorImpl, AfterViewInit {
         .classList.remove(fromClass)
       document.getElementById('show-hide-side-button')
         .classList.add(toClass)
-        document.getElementById('show-hide-side-button')
+      document.getElementById('show-hide-side-button')
         .textContent = symbol;
     }
   }
