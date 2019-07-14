@@ -1,21 +1,18 @@
 import * as nodemailer from 'nodemailer';
+import { ISystemSettings,IISystemSettings } from './ISystemSettings';
+import { ServiceLocator } from './ServiceLocator';
+import { ConstructorInject } from './ConstructorInject';
 
-export interface ISystemSetings {
-    SmtpServerConnectionString: string,
-    SmtpFromAddress:string;
-}
-
+@ConstructorInject
 export class GMailService {
     private transporter: nodemailer.Transporter
-    private settings:ISystemSetings
+    private settings!: ISystemSettings;
     
-    constructor(settings:ISystemSetings) {
-        this.settings = settings
-        this.transporter= nodemailer.createTransport(
-            this.settings.SmtpServerConnectionString
-            //`smtps://TestAccouny123321%40gmail.com:testowehaslo@smtp.gmail.com`
+    constructor(_settings?: IISystemSettings) {
+        this.transporter = nodemailer.createTransport(
+          this.settings.SmtpServerConnectionString
         );
-    }
+      }
     
     sendMail(to : string, subject :string,  text: string) {
         let mailOptions = {
@@ -32,7 +29,7 @@ export class GMailService {
                       console.log(`error: ${error}`);
                       reject(error)
                     } else {
-                        console.log(`Wysłano wiadomość: ${info.response}`);
+                        console.log(`Message Send: ${info.response}`);
                         resolve(`${info.response}`)
                     }
               })
@@ -44,3 +41,7 @@ export class GMailService {
         ) 
     }
 }
+export interface IGMailService {
+    sendMail(to: string, subject: string, content: string) : Promise<void>;
+  }
+export class IIGMailService { }

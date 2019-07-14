@@ -1,20 +1,24 @@
-import { ISystemSetings, GMailService} from "./simple_mailer"
-import { ServiceLocator } from './ServiceLocator'
 
-let smtpSinkSettings: ISystemSetings = {
-    SmtpServerConnectionString: 'smtp://localhost:1025',
-    SmtpFromAddress: "smpt_from@test.com"
+import { GMailService, IGMailService, IIGMailService } from './SimpleMailer';
+import { ServiceLocatorGeneric } from './ServiceLocator';
+import { IISystemSettings } from './ISystemSettings';
+import { ConstructorInject } from './ConstructorInject';
+
+ServiceLocatorGeneric.register(IISystemSettings, {
+    SmtpServerConnectionString : 'smtp://localhost:1025',
+    SmtpFromAddress : 'smtp_from@test.com'
+});
+
+ServiceLocatorGeneric.register(IIGMailService, new GMailService());
+
+@ConstructorInject
+class MailSender {
+  private gMailService!: IGMailService;
+  constructor(gMailService?: IIGMailService) {}
+  async sendWelcomeMail(to: string) {
+    await(this.gMailService.sendMail(to, "Hello!", ""));
+  }
 }
-//Register
-ServiceLocator.register('ISystemSetings',smtpSinkSettings)
-//Get registered
-let currentSetings:ISystemSetings = ServiceLocator.resolve('ISystemSetings')
 
-let gmailService = new GMailService(currentSetings)
-gmailService.sendMail(
-    "TestAccouny123321@gmail.com",
-    "Test",
-    "TestMessage"
-).then ((msg:any) => {
-    console.log(`${msg}`)
-})
+let mailSender = new MailSender();
+mailSender.sendWelcomeMail("tTestAccouny123321@gmail.com");
