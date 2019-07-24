@@ -1,0 +1,5 @@
+aurelia:
+au build
+au test
+au run
+au e2e
