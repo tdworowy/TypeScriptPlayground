@@ -6,7 +6,7 @@ For more information, go to https://aurelia.io/docs/cli/webpack
 
 ## Run dev app
 
-Run `au run`, then open `http://localhost:8080`
+Run `au run`, then open `http://localhost:8087`
 
 To open browser automatically, do `au run --open`.
 
