@@ -1,0 +1,20 @@
+{
+  "name": "node_react",
+  "version": "1.0.0",
+  
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/body-parser": "^1.17.0",
+    "@types/express": "^4.17.0",
+    "@types/hbs": "^4.0.1",
+    "@types/node": "^12.6.9",
+    "@types/promise-polyfill": "^6.0.3",
+    "@types/react-dom": "^16.8.5",
+    "@types/whatwg-fetch": "0.0.33"
+  },
+  "devDependencies": {
+    "source-map-loader": "^0.2.4",
+    "ts-loader": "^6.0.4"
+  }
+}
