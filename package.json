@@ -20,7 +20,7 @@
     "jasmine-jquery": "^2.1.1",
     "jasmine-reporters": "^2.3.2",
     "jbone": "^1.2.1",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "karma": "^4.1.0",
     "karma-chrome-launcher": "^2.2.0",
     "karma-jasmine": "^2.0.1",
