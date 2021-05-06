@@ -15,7 +15,7 @@
     "express-handlebars": "^3.1.0",
     "express-hbs": "^2.1.2",
     "hbs": "^4.0.4",
-    "underscore": "^1.9.1"
+    "underscore": "^1.12.1"
   },
   "devDependencies": {
     "aurelia-cli": "^1.0.0-beta.15",
