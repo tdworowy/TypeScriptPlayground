@@ -18,7 +18,7 @@
     "hbs": "^4.0.4",
     "jasmine": "^3.4.0",
     "jasmine-jquery": "^2.1.1",
-    "jasmine-reporters": "^2.3.2",
+    "jasmine-reporters": "^2.5.0",
     "jbone": "^1.2.1",
     "jquery": "^3.5.0",
     "karma": "^4.1.0",
