@@ -6,72 +6,73 @@
   <div class="overlay-content">
     <!-- początek zawartości nakładki -->
 
-    <div id="board_detail_inner_panel"
-     class="row board_detail_inner_panel_row">
-    <div class="col-sm-12">
-      <div class="row board_detail_row">
-        <div class="col-sm-8">
-          <div class="row">
-            <div class="col-sm-12  board_detail_header">
-              {{board.name}}
+    <div id="board_detail_inner_panel" class="row board_detail_inner_panel_row">
+      <div class="col-sm-12">
+        <div class="row board_detail_row">
+          <div class="col-sm-8">
+            <div class="row">
+              <div class="col-sm-12 board_detail_header">
+                {{ board.name }}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12 board_detail_sub_header">
+                {{ board.description }}
+              </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-sm-12 board_detail_sub_header">
-              {{board.description}}
-            </div>
+          <div class="col-sm-4">
+            <img
+              src="/dist/assets/images/{{ board.manufacturer_logo }}"
+              class="jpa_logo_class"
+            />
           </div>
         </div>
-        <div class="col-sm-4">
-          <img src="/dist/assets/images/{{board.manufacturer_logo}}"
-             class="jpa_logo_class" />
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-5">
-          <img src="/dist/assets/images/{{board.image}}"
-             class="board_detail_image_height center-block" />
-        </div>
-        <div class="col-sm-7">
-          <div class="row">
-            <div class="col-sm-12 board_detail_text">
-              {{board.long_description}}
-            </div>
+        <div class="row">
+          <div class="col-sm-5">
+            <img
+              src="/dist/assets/images/{{ board.image }}"
+              class="board_detail_image_height center-block"
+            />
           </div>
-          <div class="row">
-            <div class="col-sm-12 board_detail_size_header">
-              Available sizes:
+          <div class="col-sm-7">
+            <div class="row">
+              <div class="col-sm-12 board_detail_text">
+                {{ board.long_description }}
+              </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-12 board_detail_table_panel">
-              <table class="table table-striped">
-                <thead>
-                <Th> displacement </ th>
-                  <Th> width </ th>
-                  <Th> Length </ th>
-                  <th> Sail max. </th>
-                  <th> Sail min. </th>
-                </thead>
-                <tbody>
-
-                <tr *ngFor="let size of board.sizes">
-                  <td>{{size.volume}}</td>
-                  <td>{{size.width}}</td>
-                  <td>{{size.length}}</td>
-                  <td>{{size.sail_min}}</td>
-                  <td>{{size.sail_max}}</td>
-                </tr>
-
-                </tbody>
-              </table>
+            <div class="row">
+              <div class="col-sm-12 board_detail_size_header">
+                Available sizes:
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12 board_detail_table_panel">
+                <table class="table table-striped">
+                  <thead>
+                    <Th> displacement </Th>
+                    <Th> width </Th>
+                    <Th> Length </Th>
+                    <th>Sail max.</th>
+                    <th>Sail min.</th>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let size of board.sizes">
+                      <td>{{ size.volume }}</td>
+                      <td>{{ size.width }}</td>
+                      <td>{{ size.length }}</td>
+                      <td>{{ size.sail_min }}</td>
+                      <td>{{ size.sail_max }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-<!--end overlay-content-->
+    <!--end overlay-content-->
   </div>
 </div>

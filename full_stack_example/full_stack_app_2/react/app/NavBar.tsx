@@ -1,5 +1,5 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import * as React from "react";
+import * as ReactDOM from "react-dom";
 
 export class MenuItem {
   ButtonName?: string;
@@ -9,44 +9,45 @@ export class NavBarProps {
   menuItems?: MenuItem[];
 }
 
-export default class NavBar 
-extends React.Component<NavBarProps | undefined, {}> {
+export default class NavBar extends React.Component<
+  NavBarProps | undefined,
+  {}
+> {
   state: NavBarProps;
-  
+
   constructor(props?: NavBarProps) {
     super(props);
-    this.state = {menuItems : [  ]};
-    fetch('/menuitems')
-    .then( (response) => { 
-        return response.json(); 
+    this.state = { menuItems: [] };
+    fetch("/menuitems")
+      .then((response) => {
+        return response.json();
       })
-    .then( (json) => {
-        this.setState({ menuItems : json.menuItems});
+      .then((json) => {
+        this.setState({ menuItems: json.menuItems });
       })
-    .catch( (err) => {
+      .catch((err) => {
         console.log(`Errir : ${err}`);
-    });
+      });
   }
 
   render() {
-    return <div>       
-      <nav 
-        className="navbar navbar-default navbar-fixed-top navbar-inverse">
-        <div className="container-fluid">
-          <a className="navbar-brand">Main Page</a>
-          <ul className="nav navbar-nav">
-            { this.state.menuItems!.map( function (item, i) {
-              return (
-                <li key={i} 
-                  className="nav-item nav-link active">
-                  <a href="#" >{item.ButtonName}</a></li>
-              );
-            }, this)}
-
-          </ul>
-        </div>
-      </nav>
-    </div>;
-
+    return (
+      <div>
+        <nav className="navbar navbar-default navbar-fixed-top navbar-inverse">
+          <div className="container-fluid">
+            <a className="navbar-brand">Main Page</a>
+            <ul className="nav navbar-nav">
+              {this.state.menuItems!.map(function (item, i) {
+                return (
+                  <li key={i} className="nav-item nav-link active">
+                    <a href="#">{item.ButtonName}</a>
+                  </li>
+                );
+              }, this)}
+            </ul>
+          </div>
+        </nav>
+      </div>
+    );
   }
 }

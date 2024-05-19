@@ -1,17 +1,16 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
-@Component( {
-  selector: 'sidenav-component',
-  templateUrl: './sidenav.component.html',
-  styleUrls: ['./sidenav.component.css']
+@Component({
+  selector: "sidenav-component",
+  templateUrl: "./sidenav.component.html",
+  styleUrls: ["./sidenav.component.css"],
 })
-
 export class SideNavComponent {
   closeNav() {
-    document.getElementById('mySidenav').style.width = "0px";
+    document.getElementById("mySidenav").style.width = "0px";
   }
-  
+
   showNav() {
-    document.getElementById('mySidenav').style.width = "250px";
+    document.getElementById("mySidenav").style.width = "250px";
   }
 }

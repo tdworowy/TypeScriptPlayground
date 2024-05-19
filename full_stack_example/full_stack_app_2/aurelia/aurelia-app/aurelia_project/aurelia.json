@@ -12,27 +12,17 @@
   "transpiler": {
     "id": "typescript",
     "fileExtension": ".ts",
-    "dtsSource": [
-      "./types/**/*.d.ts"
-    ],
-    "source": [
-      "src/**/*.ts"
-    ]
+    "dtsSource": ["./types/**/*.d.ts"],
+    "source": ["src/**/*.ts"]
   },
   "markupProcessor": {
-    "source": [
-      "src/**/*.html"
-    ]
+    "source": ["src/**/*.html"]
   },
   "cssProcessor": {
-    "source": [
-      "src/**/*.less"
-    ]
+    "source": ["src/**/*.less"]
   },
   "jsonProcessor": {
-    "source": [
-      "src/**/*.json"
-    ]
+    "source": ["src/**/*.json"]
   },
   "unitTestRunner": {
     "source": "test/unit/**/*.ts"
@@ -64,15 +54,11 @@
     "bundles": [
       {
         "name": "app-bundle.js",
-        "source": [
-          "**/*.{js,json,css,html}"
-        ]
+        "source": ["**/*.{js,json,css,html}"]
       },
       {
         "name": "vendor-bundle.js",
-        "prepend": [
-          "node_modules/requirejs/require.js"
-        ],
+        "prepend": ["node_modules/requirejs/require.js"],
         "dependencies": [
           "aurelia-bootstrapper",
           "aurelia-loader-default",
@@ -92,10 +78,7 @@
       "plugins": [
         {
           "name": "text",
-          "extensions": [
-            ".html",
-            ".css"
-          ],
+          "extensions": [".html", ".css"],
           "stub": false
         }
       ]

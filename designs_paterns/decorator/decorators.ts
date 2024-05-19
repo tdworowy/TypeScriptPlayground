@@ -1,22 +1,19 @@
 function testDecorator(constructor: Function) {
-         console.log("in decorator function")   
+  console.log("in decorator function");
 }
 
 @testDecorator
-class DecoratedClass1 {
-}
+class DecoratedClass1 {}
 
 @testDecorator
 @testDecorator
-class DecoratedClass2 {
-}
+class DecoratedClass2 {}
 
 function decoratorFactory(message: string) {
-    return function (constructor: Function) {
-        console.log(`in decorator function. ${message}`)   
-    }
+  return function (constructor: Function) {
+    console.log(`in decorator function. ${message}`);
+  };
 }
 
 @decoratorFactory("MESSAGE")
-class DecoratedClass3 {
-}
+class DecoratedClass3 {}

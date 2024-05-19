@@ -1,67 +1,61 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from "@angular/core";
 
 export enum FilterType {
   Manufacturer,
   BoardType,
-  None
+  None,
 }
 
 interface IFilter {
   filterName: string;
   filterType: FilterType;
-  filterValues?: string [];
+  filterValues?: string[];
 }
 
 export interface IApplyFilter {
   filterType: FilterType;
-  filterValue : string;
+  filterValue: string;
 }
 
-@Component( {
-  selector: 'sidenav-component',
-  templateUrl: './sidenav.component.html',
-  styleUrls: ['./sidenav.component.css']
+@Component({
+  selector: "sidenav-component",
+  templateUrl: "./sidenav.component.html",
+  styleUrls: ["./sidenav.component.css"],
 })
-
 export class SideNavComponent {
+  @Output() notify: EventEmitter<IApplyFilter> =
+    new EventEmitter<IApplyFilter>();
 
-  @Output() notify: EventEmitter<IApplyFilter>
-    = new EventEmitter<IApplyFilter>();
-
-  filterList: IFilter [] = [
-  {
-    filterName: 'Producent',
-    filterType: FilterType.Manufacturer,
-    filterValues: ['RRD', 'JP Australia', 'Starboard']
-  },
-  {
-    filterName: 'Desk type',
-    filterType: FilterType.BoardType,
-    filterValues: ['Wave', 'Freestyle', 'Slalom']
-  },
-  {
-    filterName: 'All',
-    filterType: FilterType.None,
-    filterValues: ['Remove filter']
-  }
-  ]
+  filterList: IFilter[] = [
+    {
+      filterName: "Producent",
+      filterType: FilterType.Manufacturer,
+      filterValues: ["RRD", "JP Australia", "Starboard"],
+    },
+    {
+      filterName: "Desk type",
+      filterType: FilterType.BoardType,
+      filterValues: ["Wave", "Freestyle", "Slalom"],
+    },
+    {
+      filterName: "All",
+      filterType: FilterType.None,
+      filterValues: ["Remove filter"],
+    },
+  ];
 
   closeNav() {
-    document.getElementById('mySidenav')
-      .style.width = "0px";
+    document.getElementById("mySidenav").style.width = "0px";
   }
 
   showNav() {
-    document.getElementById('mySidenav')
-      .style.width = "250px";
+    document.getElementById("mySidenav").style.width = "250px";
   }
 
-filterClicked(filter: IFilter, filterValue: string) {
-  this.notify.emit(
-    {
-      filterType : filter.filterType,
-      filterValue: filterValue
+  filterClicked(filter: IFilter, filterValue: string) {
+    this.notify.emit({
+      filterType: filter.filterType,
+      filterValue: filterValue,
     });
-}
-
+  }
 }

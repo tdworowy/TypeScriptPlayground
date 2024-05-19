@@ -1,15 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types'
-import ContestPreview from './ContestPreview';
+import React from "react";
+import PropTypes from "prop-types";
+import ContestPreview from "./ContestPreview";
 
-const ContestList = ({ contests, onContestClick }:any) => (
+const ContestList = ({ contests, onContestClick }: any) => (
   <div className="ContestList">
-    {Object.keys(contests).map(contestId =>
+    {Object.keys(contests).map((contestId) => (
       <ContestPreview
         key={contestId}
         onClick={onContestClick}
-        {...contests[contestId]} />
-    )}
+        {...contests[contestId]}
+      />
+    ))}
   </div>
 );
 

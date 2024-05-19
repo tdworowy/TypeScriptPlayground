@@ -1,31 +1,29 @@
-import { Component, AfterViewInit, ViewChild } from '@angular/core';
-import { SideNavComponent, IApplyFilter } from './sidenav.component';
-import { RightScreenComponent } from './rightscreen.component';
-import { BoardListComponent } from './boardlist.component';
-import { Mediator, IMediatorImpl, StateType } from './state.mediator';
+import { Component, AfterViewInit, ViewChild } from "@angular/core";
+import { SideNavComponent, IApplyFilter } from "./sidenav.component";
+import { RightScreenComponent } from "./rightscreen.component";
+import { BoardListComponent } from "./boardlist.component";
+import { Mediator, IMediatorImpl, StateType } from "./state.mediator";
 
 import {
-    IBoardSizeItem,
-    IBoardType,
-    IBoardListItem,
-    IManufacturer
-    } from './IBoardList';
-import 'rxjs/add/operator/map';
-import 'rxjs/operator/delay';
-import 'rxjs/operator/mergeMap';
-import 'rxjs/operator/switchMap';
+  IBoardSizeItem,
+  IBoardType,
+  IBoardListItem,
+  IManufacturer,
+} from "./IBoardList";
+import "rxjs/add/operator/map";
+import "rxjs/operator/delay";
+import "rxjs/operator/mergeMap";
+import "rxjs/operator/switchMap";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.css"],
 })
-export class AppComponent
-      implements IMediatorImpl, AfterViewInit
-  {
-  title = 'Options:';
+export class AppComponent implements IMediatorImpl, AfterViewInit {
+  title = "Options:";
   @ViewChild(SideNavComponent)
-  private sideNav : SideNavComponent;
+  private sideNav: SideNavComponent;
   @ViewChild(RightScreenComponent)
   private rightScreen: RightScreenComponent;
   @ViewChild(BoardListComponent)
@@ -37,49 +35,45 @@ export class AppComponent
     this.mediator.moveToState(StateType.MainPanelOnly);
   }
 
-
   showNavPanel() {
     this.sideNav.showNav();
-    document.getElementById('main').style.marginLeft = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
   }
   hideNavPanel() {
     this.sideNav.closeNav();
-    document.getElementById('main').style.marginLeft = "0px";
+    document.getElementById("main").style.marginLeft = "0px";
   }
   showDetailPanel() {
     this.rightScreen.openRightWindow();
-    document.getElementById('main').style.transform = "translateX(-100%)";
+    document.getElementById("main").style.transform = "translateX(-100%)";
   }
   hideDetailPanel() {
     this.rightScreen.closeRightWindow();
-    document.getElementById('main').style.transform = "translateX(0%)";
+    document.getElementById("main").style.transform = "translateX(0%)";
   }
   changeShowHideSideButton(fromClass: string, toClass: string) {
     if (fromClass.length > 0 && toClass.length > 0) {
-      document.getElementById('show-hide-side-button')
+      document
+        .getElementById("show-hide-side-button")
         .classList.remove(fromClass);
-      document.getElementById('show-hide-side-button')
-        .classList.add(toClass);
+      document.getElementById("show-hide-side-button").classList.add(toClass);
     }
   }
 
-showLoginPanel() {
-  document.getElementById('loginPanel')
-    .classList.remove('login_sidenav_fade');
-  document.getElementById('loginPanel')
-    .style.visibility = "visible";
-};
-hideLoginPanel() {
-  document.getElementById('loginPanel')
-    .classList.add('login_sidenav_fade');
-  setTimeout(() => {
-    document.getElementById('loginPanel')
-      .style.visibility = "hidden";
-  }, 1000);
-};
-  onNotifyRightWindow(message:string):void {
-    this.mediator.moveToState(
-        this.mediator.getCurrentMainPanelState());
+  showLoginPanel() {
+    document
+      .getElementById("loginPanel")
+      .classList.remove("login_sidenav_fade");
+    document.getElementById("loginPanel").style.visibility = "visible";
+  }
+  hideLoginPanel() {
+    document.getElementById("loginPanel").classList.add("login_sidenav_fade");
+    setTimeout(() => {
+      document.getElementById("loginPanel").style.visibility = "hidden";
+    }, 1000);
+  }
+  onNotifyRightWindow(message: string): void {
+    this.mediator.moveToState(this.mediator.getCurrentMainPanelState());
   }
 
   showHideSideClicked() {
@@ -95,19 +89,17 @@ hideLoginPanel() {
     this.mediator.moveToState(StateType.DetailPanel);
   }
 
-  onNotifyFilter( filter: IApplyFilter) {
+  onNotifyFilter(filter: IApplyFilter) {
     this.boardList.applyFilter(filter);
   }
 
-  onNotifyNavbar(message:string) {
+  onNotifyNavbar(message: string) {
     if (message == "Login") {
       this.mediator.moveToState(StateType.LoginPanel);
     }
   }
 
   onNotifyLogin(message: string) {
-    this.mediator.moveToState(
-        this.mediator.getCurrentMainWindowState());
+    this.mediator.moveToState(this.mediator.getCurrentMainWindowState());
   }
-
 }

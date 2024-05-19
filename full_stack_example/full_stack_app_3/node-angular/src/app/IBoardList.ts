@@ -15,8 +15,8 @@ export interface IBoardListItem {
   description?: string;
   image?: string;
   long_description?: string;
-  board_types?: IBoardType [];
-  sizes?: IBoardSizeItem [];
+  board_types?: IBoardType[];
+  sizes?: IBoardSizeItem[];
 }
 
 export interface IManufacturer {
@@ -24,4 +24,3 @@ export interface IManufacturer {
   manufacturer_logo: string;
   boards?: IBoardListItem[];
 }
-

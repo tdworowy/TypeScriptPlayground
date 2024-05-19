@@ -1,10 +1,10 @@
 #main {
   margin-left: 250px;
-  transition: .3s;
+  transition: 0.3s;
 }
 
 #main-body {
-  transition: .3s;
+  transition: 0.3s;
 }
 
 .main-content {

@@ -1,27 +1,31 @@
-<div id="sideNav"  class="login_sidenav" >
+<div id="sideNav" class="login_sidenav">
   <form>
-  <div class="container">
-    <a href="#" class="closebtn" >&times;</a>
-    <div class="row">Log in</div>
-    <div class="row">
-      <input
-      class="sidenav-input"
-      type="text"
-      placeholder="User name"
-      name="userName"
-      [(ngModel)]="userName"></div>
-    <div class="row">
-      <input
-      class="sidenav-input"
-      type="password"
-      placeholder="Password"
-      name="password"
-      [(ngModel)]="password"></div>
-    <div class="row">
-      <button
-      class="btn btn-primary btn-lg"
-      (click)="loginClicked()">Login</button></div>
-  </div>
+    <div class="container">
+      <a href="#" class="closebtn">&times;</a>
+      <div class="row">Log in</div>
+      <div class="row">
+        <input
+          class="sidenav-input"
+          type="text"
+          placeholder="User name"
+          name="userName"
+          [(ngModel)]="userName"
+        />
+      </div>
+      <div class="row">
+        <input
+          class="sidenav-input"
+          type="password"
+          placeholder="Password"
+          name="password"
+          [(ngModel)]="password"
+        />
+      </div>
+      <div class="row">
+        <button class="btn btn-primary btn-lg" (click)="loginClicked()">
+          Login
+        </button>
+      </div>
+    </div>
   </form>
-
 </div>

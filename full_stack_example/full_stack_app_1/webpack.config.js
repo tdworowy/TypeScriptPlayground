@@ -1,23 +1,23 @@
 module.exports = {
-  entry: './src/index.jsx',
+  entry: "./src/index.jsx",
   watch: false,
   output: {
-    path: __dirname + '/public',
-    filename: 'bundle.js'
+    path: __dirname + "/public",
+    filename: "bundle.js",
   },
   module: {
     rules: [
       {
         test: /\.js$/,
-        loader: 'babel-loader'
+        loader: "babel-loader",
       },
       {
         test: /\.jsx$/,
-        loader: 'babel-loader'
-      }
-    ]
+        loader: "babel-loader",
+      },
+    ],
   },
   resolve: {
-    extensions: ['.js', '.jsx']
+    extensions: [".js", ".jsx"],
   },
 };

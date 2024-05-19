@@ -1,14 +1,18 @@
-import {inject} from 'aurelia-dependency-injection';
-import {Project, ProjectItem, CLIOptions, UI} from 'aurelia-cli';
+import { inject } from "aurelia-dependency-injection";
+import { Project, ProjectItem, CLIOptions, UI } from "aurelia-cli";
 
 @inject(Project, CLIOptions, UI)
 export default class GeneratorGenerator {
-  constructor(private project: Project, private options: CLIOptions, private ui: UI) { }
+  constructor(
+    private project: Project,
+    private options: CLIOptions,
+    private ui: UI
+  ) {}
 
   async execute() {
     const name = await this.ui.ensureAnswer(
       this.options.args[0],
-      'What would you like to call the generator?'
+      "What would you like to call the generator?"
     );
 
     let fileName = this.project.makeFileName(name);
@@ -18,7 +22,7 @@ export default class GeneratorGenerator {
       ProjectItem.text(`${fileName}.ts`, this.generateSource(className))
     );
 
-    await this.project.commitChanges()
+    await this.project.commitChanges();
     await this.ui.log(`Created ${fileName}.`);
   }
 

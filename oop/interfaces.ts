@@ -1,20 +1,19 @@
 interface IComplexType {
-    id: Number;
-    name : string;
+  id: Number;
+  name: string;
 }
 
-let complexType: IComplexType
-complexType = {id: 1, name: 'Test'}
+let complexType: IComplexType;
+complexType = { id: 1, name: "Test" };
 
-console.log(complexType)
-
+console.log(complexType);
 
 interface IComplexType2 {
-    id: Number;
-    name? : string; //optional
+  id: Number;
+  name?: string; //optional
 }
 
-let complexType2: IComplexType2
-complexType2 = {id: 1}
+let complexType2: IComplexType2;
+complexType2 = { id: 1 };
 
-console.log(complexType2)
+console.log(complexType2);

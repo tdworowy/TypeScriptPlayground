@@ -1,14 +1,18 @@
-import {inject} from 'aurelia-dependency-injection';
-import {Project, ProjectItem, CLIOptions, UI} from 'aurelia-cli';
+import { inject } from "aurelia-dependency-injection";
+import { Project, ProjectItem, CLIOptions, UI } from "aurelia-cli";
 
 @inject(Project, CLIOptions, UI)
 export default class TaskGenerator {
-  constructor(private project: Project, private options: CLIOptions, private ui: UI) { }
+  constructor(
+    private project: Project,
+    private options: CLIOptions,
+    private ui: UI
+  ) {}
 
   async execute() {
     const name = await this.ui.ensureAnswer(
       this.options.args[0],
-      'What would you like to call the task?'
+      "What would you like to call the task?"
     );
 
     let fileName = this.project.makeFileName(name);
@@ -31,6 +35,5 @@ export default function ${functionName}() {
     .pipe(gulp.dest(project.paths.output));
 }
 `;
-
   }
 }

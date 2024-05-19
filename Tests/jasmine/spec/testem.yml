@@ -1,11 +1,12 @@
 {
   "framework": "jasmine2",
-  "src_files": [
-    "jquery.js",
-    "jasmine-jquery.js",
-    "dom_test.js",
-    "async_tests.js",
-    "exampleTest_spies.js",
-    "exampleTest.js"
-  ]
+  "src_files":
+    [
+      "jquery.js",
+      "jasmine-jquery.js",
+      "dom_test.js",
+      "async_tests.js",
+      "exampleTest_spies.js",
+      "exampleTest.js",
+    ],
 }

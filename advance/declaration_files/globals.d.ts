@@ -1,5 +1,5 @@
 interface IContactData {
-    DisplayText: string
-    Email: String 
+  DisplayText: string;
+  Email: String;
 }
-declare var CONTACT_DATA: IContactData [];
+declare var CONTACT_DATA: IContactData[];
